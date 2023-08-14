@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulario</title>
+    <link rel="stylesheet" type="text/css" href="estilo.css" />
+    <script language="JavaScript">
+      //começar as funções
+
+      function calcular() 
+      {
+        let peso = document.getElementById("txtpeso").value;
+        let altura = document.getElementById("txtaltu").value;
+
+        if (isNaN(peso) || (peso== "")) {
+          alert("O peso digitado não é valido");
+          document.getElementById("txtpeso").value = "";
+          document.getElementById("txtpeso").focus();
+        } 
+        else if (isNaN(altura) || (altura == "")) {
+          alert("A Altura digitada não é valida");
+          document.getElementById("txtaltu").value = "";
+          document.getElementById("txtaltu").focus();
+        }
+        else 
+        {
+          peso = parseFloat(peso);
+          altura = parseFloat(altura);
+          let imc = peso / (altura * altura);
+          document.getElementById("txtResult").value = imc.toFixed(2);
+
+          if (document.getElementById("rdm").checked == true) 
+          {
+            if (imc > 39.9) 
+              document.getElementById("txtmensagem").value = "Você tem obesidade mórbida";
+            else if (imc >= 30) 
+              document.getElementById("txtmensagem").value = "Você tem obesidade moderada";
+            else if (imc >= 25) 
+              document.getElementById("txtmensagem").value = "Você tem obesidade leve";
+            else if (imc >= 20) 
+              document.getElementById("txtmensagem").value = "Você tem um imc de peso normal";
+            else 
+              document.getElementById("txtmensagem").value = "Você tem um imc abaixo do normal";
+          }
+          
+          else 
+          {
+            if (imc > 38.9) 
+              document.getElementById("txtmensagem").value = "Você tem obesidade mórbida";
+             else if (imc >= 29) 
+              document.getElementById("txtmensagem").value = "Você tem obesidade moderada";
+             else if (imc >= 24) 
+              document.getElementById("txtmensagem").value = "Você tem obesidade leve";
+             else if (imc >= 19) 
+              document.getElementById("txtmensagem").value = "Você tem um imc de peso normal";
+            else if (imc < 19) 
+              document.getElementById("txtmensagem").value = "Você tem um imc abaixo do normal";
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <section class="corpo">
+      <h1 class="ttl">Calcule o seu IMC</h1>
+      <form class="form-int">
+        <!-- começo do formulario, tudo que estiver dentro do "form" faz parte do formulario-->
+        <section class="inp-tds">
+          <!--texto pra por peso-->
+          <label>Peso</label>
+          <input type="text" name="peso" id="txtpeso" />
+        </section>
+        <section class="inp-tds">
+          <!--texto pra por altura-->
+          <label>Altura</label>
+          <input type="text" name="altura" id="txtaltu" />
+        </section>
+        <section class="inp-tds">
+          <!--radio botton pra indicar o sexo-->
+          <label>Sexo</label>
+          <label>
+            <input type="radio" name="sexo" id="rdf" value="f" checked /> F
+          </label>
+          <label>
+            <input type="radio" name="sexo" id="rdm" value="m" /> M
+          </label>
+        </section>
+        <section class="inp-tds">
+          <!--onde sairá o resultado do IMC-->
+          <label>Resultado</label>
+          <input type="text" name="result" id="txtResult" disabled />
+        </section>
+        <section class="inp-tds">
+          <!-- onde sairá a mensagem para o IMC-->
+          <label>Mensagem</label>
+          <textarea name="mensage" id="txtmensagem" disabled></textarea>
+        </section>
+        <section>
+          <input
+            type="button"
+            value="Calcular"
+            id="btncalc"
+            onClick="calcular()"
+            class="btn"
+          />
+        </section>
+        <section>
+          <input
+            type="reset"
+            value="Limpar"
+            id="btnreset"
+            onClick="focus()"
+            class="btn"
+          />
+        </section>
+      </form>
+    </section>
+    <section class="peso">
+      <img src="undraw_working_out_re_nhkg.svg" alt="Peso" />
+    </section>
+  </body>
+</html>
